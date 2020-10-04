@@ -2,14 +2,14 @@ var express = require('express');
 var router = express.Router();
 var db = require('../database');
 
-router.get("/all", function (req, res) {
+router.get("/all", function(req, res) {
     db.Person.findAll()
-        .then(persons => {
+        .then( persons => {
             res.status(200).send(JSON.stringify(persons));
         })
-        .catch(err => {
+        .catch( err => {
             res.status(500).send(JSON.stringify(err));
-        })
+        });
 });
 
 router.get("/:id", function(req, res) {
@@ -22,18 +22,18 @@ router.get("/:id", function(req, res) {
         });
 });
 
-router.put('/', function (req, res) {
+router.put("/", function(req, res) {
     db.Person.create({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         id: req.body.id
-    })
-    .then(person => {
-        res.status(200).send(JSON.stringify(person));
-    })
-    .catch(err => {
-        res.status(500).send(JSON.stringify(err));
-    });
+        })
+        .then( person => {
+            res.status(200).send(JSON.stringify(person));
+        })
+        .catch( err => {
+            res.status(500).send(JSON.stringify(err));
+        });
 });
 
 router.delete("/:id", function(req, res) {
@@ -51,4 +51,3 @@ router.delete("/:id", function(req, res) {
 });
 
 module.exports = router;
-
