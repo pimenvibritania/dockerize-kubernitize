@@ -17,3 +17,16 @@ blocks:
             - 'docker push "${DOCKER_USERNAME}/dockerizing-nodejs-pgsql:latest"'
       secrets:
         - name: dockerhub
+  - name: Integration Test
+    task:
+      secrets:
+        - name: dockerhub
+      prologue:
+        commands:
+          - checkout
+          - 'echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin'
+          - cat docker-compose.ci.yml | envsubst | tee docker-compose.yml
+      jobs:
+        - name: test
+          commands:
+            - docker-compose run website npm test
