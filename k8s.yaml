@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: expressk8s
+  labels:
+    app: expressk8s
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: expressk8s
+  template:
+    metadata:
+      labels:
+        app: expressk8s
+    spec:
+      containers:
+      - name: expressk8s
+        image: 668027814271.dkr.ecr.ap-southeast-1.amazonaws.com/express
+        ports:
+        - containerPort: 3000
+        imagePullPolicy: Never
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: expressk8s
+  labels:
+    app: expressk8s
+spec:
+  ports:
+  - port: 3000
+    targetPort: 3000
+  selector:
+    app: expressk8s
+  type: LoadBalancer
+    
