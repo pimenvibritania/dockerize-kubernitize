@@ -19,7 +19,7 @@ spec:
         image: 668027814271.dkr.ecr.ap-southeast-1.amazonaws.com/express
         ports:
         - containerPort: 3000
-        imagePullPolicy: Never
+        imagePullPolicy: Always
 
 ---
 
