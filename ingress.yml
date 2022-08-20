@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: myingress
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /maven
+        pathType: Prefix
+        backend:
+          service:
+            name: springboot-app
+            port:
+              number: 8085
+      - path: /express
+        pathType: Prefix
+        backend:
+          service:
+            name: expressk8s
+            port:
+              number: 3000
