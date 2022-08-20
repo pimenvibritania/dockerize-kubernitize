@@ -5,7 +5,7 @@ metadata:
   labels:
     app: expressk8s
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: expressk8s
@@ -35,5 +35,4 @@ spec:
     targetPort: 3000
   selector:
     app: expressk8s
-  type: LoadBalancer
     
