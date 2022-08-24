@@ -15,11 +15,6 @@ pipeline {
     }
 
     stages {
-        // stage('Checkout') {
-        //     steps {
-        //         checkout([$class: 'GitSCM', branches: [[name: '*/k8s']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/pimenvibritania/dockerize-kubernitize']]])
-        //     }
-        // }
         stage('Install Depedencies') {
             steps {
                 sh "npm install"
@@ -29,7 +24,7 @@ pipeline {
         stage('Build Image') {
             steps {
                 script {
-                    docker.build taggedImage
+                    "docker build -t ${registry} -t ${taggedImage} ."
                 }
             }
         }
