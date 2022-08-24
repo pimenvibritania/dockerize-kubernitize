@@ -12,6 +12,7 @@ pipeline {
         shortCommitHash = gitCommitHash.take(7)
         gitCommitId = sh(script: 'git rev-parse HEAD|cut -c1-7', returnStdout: true).trim()
         taggedImage = "${registry}:${gitCommitId}"
+        latestImage = "${registry}:latest"
     }
 
     stages {
@@ -24,7 +25,8 @@ pipeline {
         stage('Build Image') {
             steps {
                 script {
-                    "docker build -t ${taggedImage} -t ${registry} ."
+                    docker.build latestImage
+                    docker.build taggedImage
                 }
             }
         }
