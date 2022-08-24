@@ -4,7 +4,7 @@ const app = express();
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send("Hello Sora aoi");
+  res.send("Hello Sora aoi with mul tag");
 });
 
 app.listen(3000, () => {

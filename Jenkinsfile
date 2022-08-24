@@ -24,7 +24,7 @@ pipeline {
         stage('Build Image') {
             steps {
                 script {
-                    "docker build -t ${registry} -t ${taggedImage} ."
+                    "docker build -t ${taggedImage} -t ${registry} ."
                 }
             }
         }
@@ -32,7 +32,7 @@ pipeline {
         stage('Push to ECR') {
             steps {
                 sh "aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 668027814271.dkr.ecr.ap-southeast-1.amazonaws.com"
-                sh "docker push ${registry}"
+                sh "docker push ${taggedImage}"
             }
         }
         
