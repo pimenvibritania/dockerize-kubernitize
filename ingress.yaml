@@ -2,20 +2,20 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   namespace: default
-  name: expressk8s
+  name: expressk8singress
   annotations:
     kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: instance
 spec:
   rules:
-    - host: "*.amazonaws.com"
+    - host: "k8s.doogether.tech"
       http:
         paths:
           - path: "/"
             pathType: Prefix
             backend:
               service:
-		name: expressk8s
+                name: expressk8s
                 port:
                   number: 80
