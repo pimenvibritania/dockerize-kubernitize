@@ -9,7 +9,7 @@ metadata:
     alb.ingress.kubernetes.io/target-type: instance
 spec:
   rules:
-    - host: "k8s.doogether.tech"
+    - host: "k8s.pimenvibritania.tech"
       http:
         paths:
           - path: "/"
